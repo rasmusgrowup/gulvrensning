@@ -13,9 +13,14 @@ import { beforeSyncWithSearch } from '@/search/beforeSync'
 
 import { Page, Post } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
   return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'
+}
+
+if (!process.env.BLOB_READ_WRITE_TOKEN) {
+  throw new Error('BLOB_READ_WRITE_TOKEN is not defined in the environment variables.');
 }
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
@@ -90,4 +95,13 @@ export const plugins: Plugin[] = [
     },
   }),
   payloadCloudPlugin(),
+  vercelBlobStorage({
+    enabled: true, // Optional, defaults to true
+    // Specify which collections should use Vercel Blob
+    collections: {
+      media: true,
+    },
+    // Token provided by Vercel once Blob storage is added to your Vercel project
+    token: process.env.BLOB_READ_WRITE_TOKEN,
+  }),
 ]
