@@ -1,29 +1,30 @@
-import clsx from 'clsx'
-import React from 'react'
+import React from 'react';
+import clsx from 'clsx';
+import type { Logo as LogoType } from '@/payload-types';
 
-interface Props {
-  className?: string
-  loading?: 'lazy' | 'eager'
-  priority?: 'auto' | 'high' | 'low'
+interface LogoProps {
+  logo: LogoType; // Pass the logo data directly
+  className?: string;
+  loading?: 'lazy' | 'eager';
+  priority?: 'auto' | 'high' | 'low';
 }
 
-export const Logo = (props: Props) => {
-  const { loading: loadingFromProps, priority: priorityFromProps, className } = props
-
-  const loading = loadingFromProps || 'lazy'
-  const priority = priorityFromProps || 'low'
+export const Logo: React.FC<LogoProps> = ({ logo, className, loading = 'lazy', priority = 'low' }) => {
+  if (!logo || !logo.image || typeof logo.image === 'number' || !logo.image.url) {
+    return <div className={clsx('text-red-500', className)}>Gulvrensning.dk</div>;
+  }
 
   return (
     /* eslint-disable @next/next/no-img-element */
     <img
-      alt="Payload Logo"
+      alt={logo.alt || 'Logo'}
       width={193}
       height={34}
       loading={loading}
       fetchPriority={priority}
       decoding="async"
       className={clsx('max-w-[9.375rem] w-full h-[34px]', className)}
-      src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-logo-light.svg"
+      src={logo.image.url}
     />
-  )
-}
+  );
+};
