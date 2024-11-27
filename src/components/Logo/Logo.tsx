@@ -1,30 +1,26 @@
 import React from 'react';
 import clsx from 'clsx';
-import type { Logo as LogoType } from '@/payload-types';
+import type { Media } from '@/payload-types';
+import styles from './Logo.module.scss';
+import { draftMode } from 'next/headers'
 
 interface LogoProps {
-  logo: LogoType; // Pass the logo data directly
+  logo: number | Media; // Fully populated Media object
   className?: string;
-  loading?: 'lazy' | 'eager';
-  priority?: 'auto' | 'high' | 'low';
 }
 
-export const Logo: React.FC<LogoProps> = ({ logo, className, loading = 'lazy', priority = 'low' }) => {
-  if (!logo || !logo.image || typeof logo.image === 'number' || !logo.image.url) {
-    return <div className={clsx('text-red-500', className)}>Gulvrensning.dk</div>;
+export const Logo: React.FC<LogoProps> = ({ logo, className }) => {
+
+  if (!logo || typeof logo === 'number' || !logo.url) {
+    return <div className={clsx(styles.noLogo, className)}>Gulvrensning.dk</div>;
   }
 
   return (
     /* eslint-disable @next/next/no-img-element */
     <img
       alt={logo.alt || 'Logo'}
-      width={193}
-      height={34}
-      loading={loading}
-      fetchPriority={priority}
-      decoding="async"
-      className={clsx('max-w-[9.375rem] w-full h-[34px]', className)}
-      src={logo.image.url}
+      src={logo.url}
+      className={clsx(styles.logo, className)}
     />
   );
 };

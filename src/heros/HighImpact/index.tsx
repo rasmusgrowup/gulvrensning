@@ -1,5 +1,5 @@
 'use client'
-import { useHeaderTheme } from '@/providers/HeaderTheme'
+
 import React, { useEffect } from 'react'
 
 import type { Page } from '@/payload-types'
@@ -8,26 +8,20 @@ import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 
+import styles from '../Heros.module.scss'
+
 export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText }) => {
-  const { setHeaderTheme } = useHeaderTheme()
-
-  useEffect(() => {
-    setHeaderTheme('dark')
-  })
-
+  console.log(media)
   return (
-    <div
-      className="relative -mt-[10.4rem] flex items-center justify-center text-white"
-      data-theme="dark"
-    >
-      <div className="container mb-8 z-10 relative flex items-center justify-center">
-        <div className="max-w-[36.5rem] text-center">
-          {richText && <RichText className="mb-6" content={richText} enableGutter={false} />}
+    <div className={styles.highImpactHero}>
+      <div className={styles.content}>
+        <div className={styles.contentInner}>
+          {richText && <RichText className={styles.richText} content={richText} enableGutter={false} />}
           {Array.isArray(links) && links.length > 0 && (
-            <ul className="flex justify-center gap-4">
+            <ul className={styles.links}>
               {links.map(({ link }, i) => {
                 return (
-                  <li key={i}>
+                  <li key={i} className={styles.link}>
                     <CMSLink {...link} />
                   </li>
                 )
@@ -36,11 +30,11 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
           )}
         </div>
       </div>
-      <div className="min-h-[80vh] select-none">
+      <div className={styles.mediaContainer}>
         {media && typeof media === 'object' && (
           <Media
             fill
-            imgClassName="-z-10 object-cover"
+            imgClassName={styles.media}
             priority={false}
             loading="lazy"
             resource={media}

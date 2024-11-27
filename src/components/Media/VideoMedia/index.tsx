@@ -7,6 +7,8 @@ import type { Props as MediaProps } from '../types'
 
 import { getClientSideURL } from '@/utilities/getURL'
 
+import styles from '../Media.module.scss'
+
 export const VideoMedia: React.FC<MediaProps> = (props) => {
   const { onClick, resource, videoClassName } = props
 
@@ -29,7 +31,7 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
     return (
       <video
         autoPlay
-        className={cn(videoClassName)}
+        className={styles.videoClassName}
         controls={false}
         loop
         muted
@@ -37,7 +39,9 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
         playsInline
         ref={videoRef}
       >
-        <source src={`${getClientSideURL()}/media/${filename}`} />
+        <source src={`${getClientSideURL()}/api/media/file/${filename}`} />
+        {/* http://localhost:3000/api/media/file/Gulvrensning.dk%20-%20Hero%20video.mp4 */}
+        {/* http://localhost:3000/media/file/Gulvrensning.dk%20-%20Hero%20video.mp4 */}
       </video>
     )
   }

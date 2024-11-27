@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
+import type { Viewport } from 'next'
+import { Raleway } from 'next/font/google'
 
 import { cn } from 'src/utilities/cn'
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
@@ -15,19 +15,29 @@ import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
 
 import './globals.css'
+import styles from './Layout.module.scss'
 import { getServerSideURL } from '@/utilities/getURL'
+
+const raleway = Raleway({
+  subsets: ['latin'],
+  display: 'swap'
+})
+
+export const viewport: Viewport = {
+  themeColor: 'rgb(51, 149, 255)',
+}
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
   return (
-    <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
+    <html className={raleway.className} lang="en" suppressHydrationWarning>
       <head>
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
-      <body>
+      <body className={styles.body}>
         <Providers>
           <AdminBar
             adminBarProps={{
@@ -35,10 +45,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             }}
           />
           <LivePreviewListener />
-
-          <Header />
-          {children}
-          <Footer />
+          <main className={styles.main}>
+            <Header/>
+            {children}
+            <Footer />
+          </main>
         </Providers>
       </body>
     </html>

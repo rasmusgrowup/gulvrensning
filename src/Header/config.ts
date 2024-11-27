@@ -5,10 +5,21 @@ import { revalidateHeader } from './hooks/revalidateHeader'
 
 export const Header: GlobalConfig = {
   slug: 'header',
+  label: 'Header Settings',
   access: {
     read: () => true,
   },
   fields: [
+    {
+      name: 'logo',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Header Logo',
+      required: true,
+      admin: {
+        description: 'Upload the logo for the header.',
+      },
+    },
     {
       name: 'navItems',
       type: 'array',

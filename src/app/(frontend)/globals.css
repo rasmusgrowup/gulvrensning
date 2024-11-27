@@ -101,3 +101,9 @@ html[data-theme='dark'],
 html[data-theme='light'] {
   opacity: initial;
 }
+
+:root {
+  --primary-accent: rgb(51, 149, 255);
+  --black: rgb(0, 0, 0);
+  --white: rgb(255, 255, 255);
+}

@@ -1,25 +1,32 @@
-'use client'
+'use client';
 
-import React from 'react'
+import React from 'react';
 
-import type { Header as HeaderType } from '@/payload-types'
+import type { Header as HeaderType } from '@/payload-types';
 
-import { CMSLink } from '@/components/Link'
-import Link from 'next/link'
-import { SearchIcon } from 'lucide-react'
+import { CMSLink } from '@/components/Link';
+import Link from 'next/link';
+import { SearchIcon } from 'lucide-react';
 
-export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
-  const navItems = header?.navItems || []
+import clsx from 'clsx';
+import styles from './Nav.module.scss'; // Import SCSS module
+
+interface HeaderNavProps {
+  header: HeaderType; // Define the header prop type
+}
+
+export const HeaderNav: React.FC<HeaderNavProps> = ({ header }) => {
+  const navItems = header?.navItems || [];
 
   return (
-    <nav className="flex gap-3 items-center">
-      {navItems.map(({ link }, i) => {
-        return <CMSLink key={i} {...link} appearance="link" />
-      })}
-      <Link href="/search">
+    <nav className={styles.nav}>
+      {navItems.map(({ link }, i) => (
+        <CMSLink key={i} {...link} className={styles.navItem} appearance="link" />
+      ))}
+      <Link href="/search" className={styles.searchLink}>
         <span className="sr-only">Search</span>
-        <SearchIcon className="w-5 text-primary" />
+        <SearchIcon className={clsx(styles.searchIcon)} />
       </Link>
     </nav>
-  )
-}
+  );
+};
