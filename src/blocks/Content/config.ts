@@ -11,6 +11,16 @@ import { link } from '@/fields/link'
 
 const columnFields: Field[] = [
   {
+    name: 'heading',
+    type: 'text', // Title field for the block
+    label: 'Heading',
+    required: true, // Ensure a title is always provided
+    admin: {
+      description: 'Add a heading for this content block.',
+      placeholder: 'Nice big heading...',
+    },
+  },
+  {
     name: 'size',
     type: 'select',
     defaultValue: 'oneThird',
@@ -65,6 +75,15 @@ export const Content: Block = {
   slug: 'content',
   interfaceName: 'ContentBlock',
   fields: [
+    {
+      name: 'title',
+      type: 'text', // Title field for the block
+      label: 'Title',
+      admin: {
+        description: 'Add a title for this content block.',
+        placeholder: 'Enter a title...',
+      },
+    },
     {
       name: 'columns',
       type: 'array',

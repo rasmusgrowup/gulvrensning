@@ -1,0 +1,53 @@
+.contentContainer {
+ width: 100%;
+}
+
+.contentHeader {
+  border-bottom: 1px solid var(--primary-line-color);
+  color: var(--primary-accent);
+  font-weight: 600;
+  padding: 2rem 0;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.columnContainer {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1rem;
+  padding-top: 2rem;
+  width: 100%;
+}
+
+.columnHeading {
+  font-weight: 700;
+}
+
+.fullColumn {
+  display: flex;
+  justify-content: space-between;
+  grid-column: span 12; /* Spans all 12 columns */
+
+  .columnHeading {
+    font-size: 3rem;
+    font-weight: 400;
+    width: 50%;
+  }
+
+  .columnContent {
+    padding-left: 3rem;
+    width: 35%;
+  }
+}
+
+.halfColumn {
+  grid-column: span 6; /* Spans 6 columns */
+}
+
+.oneThirdColumn {
+  grid-column: span 4; /* Spans 4 columns */
+}
+
+.twoThirdsColumn {
+  grid-column: span 8; /* Spans 8 columns */
+}

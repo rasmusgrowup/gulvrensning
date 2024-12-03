@@ -2,18 +2,21 @@
   position: absolute;
   top: 0;
   left: 0;
-  padding: 3rem;
+  //padding: 3rem;
   width: 100%;
   z-index: 99;
 }
 
 .logo {
   color: var(--primary-accent);
-  height: 4rem;
+  height: 4.5rem;
 }
 
 .headerContainer {
   display: flex;
   justify-content: space-between;
+  margin: 0 auto;
+  max-width: var(--maxWidth);
+  padding: 3rem 5vw;
   width: 100%;
 }

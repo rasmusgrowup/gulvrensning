@@ -2,6 +2,7 @@ import { cn } from 'src/utilities/cn'
 import React, { Fragment } from 'react'
 
 import type { Page } from '@/payload-types'
+import styles from './Blocks.module.scss'
 
 import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
@@ -35,10 +36,10 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div className="my-16" key={index}>
+                <section className={styles.blocksContainer} key={index}>
                   {/* @ts-expect-error */}
                   <Block {...block} />
-                </div>
+                </section>
               )
             }
           }

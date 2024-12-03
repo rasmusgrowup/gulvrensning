@@ -13,7 +13,7 @@ import styles from '../Heros.module.scss'
 export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText }) => {
   console.log(media)
   return (
-    <div className={styles.highImpactHero}>
+    <section className={styles.highImpactHero}>
       <div className={styles.content}>
         <div className={styles.contentInner}>
           {richText && <RichText className={styles.richText} content={richText} enableGutter={false} />}
@@ -22,7 +22,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
               {links.map(({ link }, i) => {
                 return (
                   <li key={i} className={styles.link}>
-                    <CMSLink {...link} />
+                    <CMSLink {...link} appearance={link.appearance || 'inline'} />
                   </li>
                 )
               })}
@@ -41,6 +41,6 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
           />
         )}
       </div>
-    </div>
+    </section>
   )
 }

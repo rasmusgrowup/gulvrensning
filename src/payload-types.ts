@@ -261,8 +261,10 @@ export interface CallToActionBlock {
  * via the `definition` "ContentBlock".
  */
 export interface ContentBlock {
+  title?: string | null;
   columns?:
     | {
+        heading: string;
         size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
         richText?: {
           root: {
@@ -821,9 +823,11 @@ export interface PagesSelect<T extends boolean = true> {
         content?:
           | T
           | {
+              title?: T;
               columns?:
                 | T
                 | {
+                    heading?: T;
                     size?: T;
                     richText?: T;
                     enableLink?: T;

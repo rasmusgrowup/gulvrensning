@@ -4,36 +4,46 @@ import RichText from '@/components/RichText'
 
 import type { ContentBlock as ContentBlockProps } from '@/payload-types'
 
-import { CMSLink } from '../../components/Link'
+import { CMSLink } from '@/components/Link'
+
+import styles from './Content.module.scss'
 
 export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
-  const { columns } = props
+  const {
+    columns,
+    title,
+  } = props
 
   const colsSpanClasses = {
-    full: '12',
-    half: '6',
-    oneThird: '4',
-    twoThirds: '8',
+    full: styles.fullColumn,
+    half: styles.halfColumn,
+    oneThird: styles.oneThirdColumn,
+    twoThirds: styles.twoThirdsColumn,
   }
 
   return (
-    <div className="container my-16">
-      <div className="grid grid-cols-4 lg:grid-cols-12 gap-y-8 gap-x-16">
+    <div className={styles.contentContainer}>
+      {title && <header className={styles.contentHeader}>{title}</header>}
+      <div className={styles.columnContainer}>
         {columns &&
           columns.length > 0 &&
           columns.map((col, index) => {
-            const { enableLink, link, richText, size } = col
+            const {
+              heading,
+              enableLink,
+              link,
+              richText,
+              size
+            } = col
 
             return (
-              <div
-                className={cn(`col-span-4 lg:col-span-${colsSpanClasses[size!]}`, {
-                  'md:col-span-2': size !== 'full',
-                })}
-                key={index}
-              >
-                {richText && <RichText content={richText} enableGutter={false} />}
-
-                {enableLink && <CMSLink {...link} />}
+              <div className={colsSpanClasses[size!]} key={index}>
+                {heading && <h2 className={styles.columnHeading}>{heading}</h2>}
+                <div className={styles.columnContent}>
+                  {richText && <RichText content={richText} enableGutter={false} />}
+                  <div className="vsl"></div>
+                  {enableLink && link && <CMSLink {...link} appearance={link.appearance || 'inline'}/>}
+                </div>
               </div>
             )
           })}
