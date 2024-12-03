@@ -29,18 +29,28 @@ const sizeClasses: Record<NonNullable<ButtonProps['size']>, string> = {
   sm: styles['sizes-sm'],
 };
 
+const buttonVariants = ({
+  variant = 'default',
+  size = 'default',
+  className,
+}: {
+  variant?: NonNullable<ButtonProps['variant']>;
+  size?: NonNullable<ButtonProps['size']>;
+  className?: string;
+}) => clsx(
+  styles.button, // Base button styles
+  variantClasses[variant], // Variant-specific styles
+  sizeClasses[size], // Size-specific styles
+  className, // Custom className passed by user
+);
+
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ asChild = false, className, variant = 'default', size = 'default', ...props }, ref) => {
     const Comp = asChild ? Slot : 'button';
 
     return (
       <Comp
-        className={clsx(
-          styles.button, // Base button styles
-          variantClasses[variant], // Variant-specific styles
-          sizeClasses[size], // Size-specific styles
-          className // Custom className passed by user
-        )}
+        className={buttonVariants({ variant, size, className })}
         ref={ref}
         {...props}
       />
@@ -50,4 +60,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
 Button.displayName = 'Button';
 
-export { Button };
+export { Button, buttonVariants };
