@@ -136,6 +136,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
       blockType: 'content',
       columns: [
         {
+          heading: 'First Column Heading',
           richText: {
             root: {
               type: 'root',
@@ -170,6 +171,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
         },
         {
           enableLink: false,
+          heading: 'Second Column Heading',
           richText: {
             root: {
               type: 'root',
@@ -255,6 +257,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
         },
         {
           enableLink: false,
+          heading: 'Third Column Heading',
           richText: {
             root: {
               type: 'root',
@@ -308,6 +311,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
         },
         {
           enableLink: false,
+          heading: 'Fourth Column Heading',
           richText: {
             root: {
               type: 'root',
@@ -361,6 +365,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
         },
         {
           enableLink: false,
+          heading: 'Fifth Column Heading',
           richText: {
             root: {
               type: 'root',
@@ -446,6 +451,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
         },
         {
           enableLink: false,
+          heading: 'Sixth Column Heading',
           richText: {
             root: {
               type: 'root',
