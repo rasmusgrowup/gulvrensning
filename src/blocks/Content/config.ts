@@ -11,6 +11,21 @@ import { link } from '@/fields/link'
 
 const columnFields: Field[] = [
   {
+    name: 'blockType',
+    type: 'select',
+    label: 'Column Type',
+    required: true,
+    options: [
+      { label: 'Text', value: 'text' },
+      { label: 'Image', value: 'image' },
+      { label: 'Video', value: 'video' },
+      { label: 'Card', value: 'card' },
+    ],
+    admin: {
+      description: 'Select the type of content for this column.',
+    },
+  },
+  {
     name: 'heading',
     type: 'text', // Title field for the block
     label: 'Heading',
@@ -23,7 +38,7 @@ const columnFields: Field[] = [
   {
     name: 'size',
     type: 'select',
-    defaultValue: 'oneThird',
+    defaultValue: 'full',
     options: [
       {
         label: 'One Third',
@@ -69,6 +84,23 @@ const columnFields: Field[] = [
       },
     },
   }),
+  {
+    name: 'image',
+    type: 'upload',
+    relationTo: 'media',
+    admin: {
+      condition: (_, siblingData) => siblingData.blockType === 'image' || siblingData.blockType === 'card', // Only show for image type
+    },
+  },
+  {
+    name: 'videoUrl',
+    type: 'text',
+    label: 'Video URL',
+    admin: {
+      condition: (_, siblingData) => siblingData.blockType === 'video', // Only show for video type
+      placeholder: 'Enter the video URL...',
+    },
+  },
 ]
 
 export const Content: Block = {

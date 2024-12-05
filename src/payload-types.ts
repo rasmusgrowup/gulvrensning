@@ -264,6 +264,7 @@ export interface ContentBlock {
   title?: string | null;
   columns?:
     | {
+        blockType: 'text' | 'image' | 'video' | 'card';
         heading: string;
         size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
         richText?: {
@@ -293,6 +294,8 @@ export interface ContentBlock {
           label: string;
           appearance?: ('default' | 'outline') | null;
         };
+        image?: (number | null) | Media;
+        videoUrl?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -827,6 +830,7 @@ export interface PagesSelect<T extends boolean = true> {
               columns?:
                 | T
                 | {
+                    blockType?: T;
                     heading?: T;
                     size?: T;
                     richText?: T;
@@ -841,6 +845,8 @@ export interface PagesSelect<T extends boolean = true> {
                           label?: T;
                           appearance?: T;
                         };
+                    image?: T;
+                    videoUrl?: T;
                     id?: T;
                   };
               id?: T;
