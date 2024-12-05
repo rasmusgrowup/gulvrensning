@@ -168,6 +168,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
             },
           },
           size: 'full',
+          blockType: 'text',
         },
         {
           enableLink: false,
@@ -204,7 +205,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
                       format: 0,
                       mode: 'normal',
                       style: '',
-                      text: "Manage this site's pages and posts from the ",
+                      text: 'Manage this site\'s pages and posts from the ',
                       version: 1,
                     },
                     {
@@ -254,6 +255,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
             },
           },
           size: 'oneThird',
+          blockType: 'text',
         },
         {
           enableLink: false,
@@ -308,6 +310,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
             },
           },
           size: 'oneThird',
+          blockType: 'text',
         },
         {
           enableLink: false,
@@ -362,6 +365,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
             },
           },
           size: 'oneThird',
+          blockType: 'text',
         },
         {
           enableLink: false,
@@ -448,6 +452,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
             },
           },
           size: 'oneThird',
+          blockType: 'text',
         },
         {
           enableLink: false,
@@ -502,6 +507,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
             },
           },
           size: 'oneThird',
+          blockType: 'text',
         },
       ],
     },
