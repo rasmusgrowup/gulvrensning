@@ -19,6 +19,8 @@ export const TextColumn: React.FC<TextColumnProps> = (props) => {
   const colsSpanClasses = {
     full: styles.fullColumn,
     half: styles.halfColumn,
+    oneQuarter: styles.oneQuarter,
+    oneSixth: styles.oneSixth,
     oneThird: styles.oneThirdColumn,
     twoThirds: styles.twoThirdsColumn,
   }

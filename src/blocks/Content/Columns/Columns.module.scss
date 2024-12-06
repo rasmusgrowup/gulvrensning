@@ -55,6 +55,41 @@
   }
 }
 
+// Image Column //
+.imageColumn {
+  position: relative;
+}
+
+.imageColumn .columnHeading {
+  //color: var(--black);
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.imageColumn .imageContainer {
+  padding-top: 62%;
+}
+
+.contentContainer {
+  padding: 1.5rem 0;
+}
+
+.halfColumn .contentContainer {
+  display: flex;
+  justify-content: space-between;
+
+  .columnContent {
+    width: 50%;
+  }
+}
+
+.columnLink {
+  display: inline-block;
+  position: absolute;
+  top: 62%;
+  left: 50%;
+}
+
 // SIZES OF THE COLUMNS //
 .fullColumn {
   display: flex;
@@ -71,6 +106,14 @@
     padding-left: 3rem;
     width: 35%;
   }
+}
+
+.oneSixth {
+  grid-column: span 2; /* Spans 6 columns */
+}
+
+.oneQuarter {
+  grid-column: span 3; /* Spans 6 columns */
 }
 
 .halfColumn {

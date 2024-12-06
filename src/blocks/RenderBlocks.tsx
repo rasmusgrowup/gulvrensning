@@ -9,6 +9,7 @@ import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { ContentBlock } from '@/blocks/Content/ContentBlock'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
+import { clsx } from 'clsx'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -36,7 +37,7 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <section className={styles.blocksContainer} key={index}>
+                <section className={clsx(styles.blocksContainer, styles[blockType])} key={index}>
                   {/* @ts-expect-error */}
                   <Block {...block} />
                 </section>

@@ -2,4 +2,13 @@
   margin: 0 auto;
   max-width: var(--maxWidth);
   padding: 5vw 5vw 0;
+  position: relative;
+}
+
+.mediaBlock {
+  height: 50vw;
+  margin: 5vw auto;
+  max-width: none;
+  overflow: hidden;
+  width: 100%;
 }

@@ -26,6 +26,8 @@ export const VideoColumn: React.FC<ImageColumnProps> = (props) => {
   const colsSpanClasses = {
     full: styles.fullColumn,
     half: styles.halfColumn,
+    oneQuarter: styles.oneQuarter,
+    oneSixth: styles.oneSixth,
     oneThird: styles.oneThirdColumn,
     twoThirds: styles.twoThirdsColumn,
   }

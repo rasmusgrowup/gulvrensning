@@ -265,8 +265,8 @@ export interface ContentBlock {
   columns?:
     | {
         blockType: 'text' | 'image' | 'video' | 'card';
-        heading: string;
-        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+        heading?: string | null;
+        size?: ('oneSixth' | 'oneQuarter' | 'oneThird' | 'half' | 'twoThirds' | 'full') | null;
         richText?: {
           root: {
             type: string;

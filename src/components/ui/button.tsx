@@ -9,6 +9,7 @@ export interface ButtonProps
   asChild?: boolean;
   variant?: 'default' | 'destructive' | 'ghost' | 'link' | 'outline' | 'secondary';
   size?: 'clear' | 'default' | 'icon' | 'lg' | 'sm';
+  icon?: React.ReactNode;
 }
 
 // Use Record to strictly type the variant and size keys
@@ -45,7 +46,15 @@ const buttonVariants = ({
 );
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ asChild = false, className, variant = 'default', size = 'default', ...props }, ref) => {
+  ({
+     asChild = false,
+     className,
+     variant = 'default',
+     size = 'default',
+     icon,
+     children,
+     ...props
+   }, ref) => {
     const Comp = asChild ? Slot : 'button';
 
     return (
@@ -53,7 +62,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={buttonVariants({ variant, size, className })}
         ref={ref}
         {...props}
-      />
+      >
+        <span>
+          {children}
+          {icon && <span className={styles.icon}>{icon}</span>}
+        </span>
+      </Comp>
     );
   }
 );

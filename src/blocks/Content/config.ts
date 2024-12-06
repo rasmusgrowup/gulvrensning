@@ -17,8 +17,8 @@ const columnFields: Field[] = [
     required: true,
     options: [
       { label: 'Text', value: 'text' },
-      { label: 'Image', value: 'image' },
-      { label: 'Video', value: 'video' },
+      { label: 'Image & Text', value: 'image' },
+      { label: 'Video & Text', value: 'video' },
       { label: 'Card', value: 'card' },
     ],
     admin: {
@@ -29,7 +29,6 @@ const columnFields: Field[] = [
     name: 'heading',
     type: 'text', // Title field for the block
     label: 'Heading',
-    required: true, // Ensure a title is always provided
     admin: {
       description: 'Add a heading for this content block.',
       placeholder: 'Nice big heading...',
@@ -40,6 +39,14 @@ const columnFields: Field[] = [
     type: 'select',
     defaultValue: 'full',
     options: [
+      {
+        label: 'One Sixth',
+        value: 'oneSixth',
+      },
+      {
+        label: 'One Quarter',
+        value: 'oneQuarter',
+      },
       {
         label: 'One Third',
         value: 'oneThird',
