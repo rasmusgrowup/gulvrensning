@@ -1,7 +1,19 @@
-.highImpactHero {
+.highImpactHero,
+.mediumImpactHero,
+.lowImpactHero {
   height: 100vh;
   min-height: 800px;
   position: relative;
+}
+
+.lowImpactHero {
+  min-height: 520px;
+  height: 50vh;
+}
+
+.mediumImpactHero {
+  min-height: 600px;
+  height: 50vh;
 }
 
 .content {
@@ -11,7 +23,6 @@
   position: relative;
   z-index: 2;
 }
-
 
 .contentInner {
   bottom: 5vw;
@@ -48,6 +59,7 @@
 
 .media {
   height: 100%;
+  object-fit: cover;
   width: 100%;
   position: relative;
 }

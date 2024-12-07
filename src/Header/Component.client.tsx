@@ -10,6 +10,7 @@ import type { Header } from '@/payload-types';
 import { Logo } from '@/components/Logo/Logo';
 import { HeaderNav } from './Nav';
 import styles from './Header.module.scss'
+import { CMSLink } from '@/components/Link'
 
 interface HeaderClientProps {
   header: Header;
@@ -26,6 +27,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ header }) => {
           <Logo logo={header.logo} className={styles.logo} />
         </Link>
         <HeaderNav header={header} />
+        <CMSLink label={'Bestil tilbud'} url={'/bestil-tilbud'} className={styles.navItem} appearance="default"/>
       </div>
     </header>
   );

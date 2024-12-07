@@ -21,6 +21,38 @@ export const Footer: GlobalConfig = {
       },
     },
     {
+      name: 'email',
+      type: 'email',
+      label: 'Email',
+      admin: {
+        description: 'Enter a contact email address',
+      },
+    },
+    {
+      name: 'phoneNumber',
+      type: 'text',
+      label: 'Phone Number',
+      admin: {
+        description: 'Enter a contact phone number',
+      },
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+      label: 'Description',
+      admin: {
+        description: 'Enter a description',
+      },
+    },
+    {
+      name: 'address',
+      type: 'richText',
+      label: 'Company Address',
+      admin: {
+        description: 'Enter an address',
+      },
+    },
+    {
       name: 'navItems',
       type: 'array',
       fields: [

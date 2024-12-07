@@ -1,4 +1,11 @@
 .nav {
   align-items: center;
   display: flex;
+  gap: 2rem;
+}
+
+.navItem {
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 500;
 }

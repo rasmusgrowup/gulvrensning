@@ -5,42 +5,38 @@ import type { Page } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
+import styles from '@/heros/Heros.module.scss'
 
 export const MediumImpactHero: React.FC<Page['hero']> = ({ links, media, richText }) => {
   return (
-    <div className="">
-      <div className="container mb-8">
-        {richText && <RichText className="mb-6" content={richText} enableGutter={false} />}
-
-        {Array.isArray(links) && links.length > 0 && (
-          <ul className="flex gap-4">
-            {links.map(({ link }, i) => {
-              return (
-                <li key={i}>
-                  <CMSLink {...link} />
-                </li>
-              )
-            })}
-          </ul>
-        )}
+    <section className={styles.mediumImpactHero}>
+      <div className={styles.content}>
+        <div className={styles.contentInner}>
+          {richText && <RichText className={styles.richText} content={richText} enableGutter={false} />}
+          {Array.isArray(links) && links.length > 0 && (
+            <ul className={styles.links}>
+              {links.map(({ link }, i) => {
+                return (
+                  <li key={i} className={styles.link}>
+                    <CMSLink {...link} appearance={link.appearance || 'inline'} />
+                  </li>
+                )
+              })}
+            </ul>
+          )}
+        </div>
       </div>
-      <div className="container ">
+      <div className={styles.mediaContainer}>
         {media && typeof media === 'object' && (
-          <div>
-            <Media
-              className="-mx-4 md:-mx-8 2xl:-mx-16"
-              imgClassName=""
-              priority
-              resource={media}
-            />
-            {media?.caption && (
-              <div className="mt-3">
-                <RichText content={media.caption} enableGutter={false} />
-              </div>
-            )}
-          </div>
+          <Media
+            fill
+            imgClassName={styles.media}
+            priority={false}
+            loading="lazy"
+            resource={media}
+          />
         )}
       </div>
-    </div>
+    </section>
   )
 }

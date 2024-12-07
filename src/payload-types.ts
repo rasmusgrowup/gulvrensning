@@ -1276,6 +1276,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Header {
   id: number;
   logo: number | Media;
+  search?: boolean | null;
   navItems?:
     | {
         link: {
@@ -1301,6 +1302,24 @@ export interface Header {
 export interface Footer {
   id: number;
   logo: number | Media;
+  email?: string | null;
+  phoneNumber?: string | null;
+  description?: string | null;
+  address?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   navItems?:
     | {
         link: {
@@ -1325,6 +1344,7 @@ export interface Footer {
  */
 export interface HeaderSelect<T extends boolean = true> {
   logo?: T;
+  search?: T;
   navItems?:
     | T
     | {
@@ -1349,6 +1369,10 @@ export interface HeaderSelect<T extends boolean = true> {
  */
 export interface FooterSelect<T extends boolean = true> {
   logo?: T;
+  email?: T;
+  phoneNumber?: T;
+  description?: T;
+  address?: T;
   navItems?:
     | T
     | {

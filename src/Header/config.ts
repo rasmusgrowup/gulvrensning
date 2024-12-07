@@ -21,6 +21,14 @@ export const Header: GlobalConfig = {
       },
     },
     {
+      name: 'search',
+      type: 'checkbox',
+      label: 'Search',
+      admin: {
+        description: 'Include search icon in the header?',
+      },
+    },
+    {
       name: 'navItems',
       type: 'array',
       fields: [

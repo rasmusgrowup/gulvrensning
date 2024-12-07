@@ -26,6 +26,7 @@
       background-color: var(--primary-accent-hover);
     }
   }
+
   &-destructive {
     background-color: var(--destructive);
     color: var(--destructive-foreground);
@@ -34,6 +35,7 @@
       background-color: var(--destructive-hover);
     }
   }
+
   &-ghost {
     background-color: transparent;
     color: var(--accent-foreground);
@@ -42,14 +44,15 @@
       background-color: var(--card-hover);
     }
   }
+
   &-link {
     color: var(--primary);
-    text-decoration: underline;
 
     &:hover {
-      text-decoration: none;
+      text-decoration: underline;
     }
   }
+
   &-outline {
     border: 1px solid var(--primary-accent);
     background-color: transparent;
@@ -60,6 +63,7 @@
       color: var(--white);
     }
   }
+
   &-secondary {
     background-color: var(--secondary);
     color: var(--secondary-foreground);

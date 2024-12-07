@@ -4,6 +4,8 @@ import type { Page } from '@/payload-types'
 
 import RichText from '@/components/RichText'
 
+import styles from '../Heros.module.scss'
+
 type LowImpactHeroType =
   | {
       children?: React.ReactNode
@@ -16,10 +18,12 @@ type LowImpactHeroType =
 
 export const LowImpactHero: React.FC<LowImpactHeroType> = ({ children, richText }) => {
   return (
-    <div className="container mt-16">
-      <div className="max-w-[48rem]">
-        {children || (richText && <RichText content={richText} enableGutter={false} />)}
+    <section className={styles.lowImpactHero}>
+      <div className={styles.content}>
+        <div className={styles.contentInner}>
+          {children || (richText && <RichText content={richText} className={styles.richText} enableGutter={false} />)}
+        </div>
       </div>
-    </div>
+    </section>
   )
 }

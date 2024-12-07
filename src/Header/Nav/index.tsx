@@ -17,16 +17,19 @@ interface HeaderNavProps {
 
 export const HeaderNav: React.FC<HeaderNavProps> = ({ header }) => {
   const navItems = header?.navItems || [];
+  const enableSearch = header?.search || false;
 
   return (
     <nav className={styles.nav}>
       {navItems.map(({ link }, i) => (
         <CMSLink key={i} {...link} className={styles.navItem} appearance="link" />
       ))}
-      <Link href="/search" className={styles.searchLink}>
-        <span className="sr-only">Search</span>
-        <SearchIcon className={clsx(styles.searchIcon)} />
-      </Link>
+      {enableSearch &&
+        <Link href="/search" className={styles.searchLink}>
+          <span className="sr-only">Search</span>
+          <SearchIcon className={clsx(styles.searchIcon)} />
+        </Link>
+      }
     </nav>
   );
 };
