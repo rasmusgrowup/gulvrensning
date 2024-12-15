@@ -19,6 +19,8 @@ interface HeaderClientProps {
 export const HeaderClient: React.FC<HeaderClientProps> = ({ header }) => {
   /* Storing the value in a useState to avoid hydration errors */
   const pathname = usePathname();
+  /* State for the menu: set hideMenu to true to hide the menu */
+  const [hideMenu, setHideMenu] = React.useState(true);
 
   return (
     <header className={styles.header}>
@@ -26,8 +28,12 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ header }) => {
         <Link href="/" className={styles.logoLink}>
           <Logo logo={header.logo} className={styles.logo} />
         </Link>
-        <HeaderNav header={header} />
-        <CMSLink label={'Bestil tilbud'} url={'/bestil-tilbud'} className={styles.navItem} appearance="default"/>
+        <HeaderNav header={header} hideMenu={hideMenu} />
+        <div className={styles.menuToggle} onClick={() => setHideMenu(!hideMenu)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </header>
   );

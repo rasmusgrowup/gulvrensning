@@ -13,14 +13,15 @@ import styles from './Nav.module.scss'; // Import SCSS module
 
 interface HeaderNavProps {
   header: HeaderType; // Define the header prop type
+  hideMenu: boolean;
 }
 
-export const HeaderNav: React.FC<HeaderNavProps> = ({ header }) => {
+export const HeaderNav: React.FC<HeaderNavProps> = ({ header, hideMenu }) => {
   const navItems = header?.navItems || [];
   const enableSearch = header?.search || false;
 
   return (
-    <nav className={styles.nav}>
+    <nav className={clsx(styles.nav, hideMenu ? styles.hideMenu : styles.showMenu )}>
       {navItems.map(({ link }, i) => (
         <CMSLink key={i} {...link} className={styles.navItem} appearance="link" />
       ))}
@@ -30,6 +31,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ header }) => {
           <SearchIcon className={clsx(styles.searchIcon)} />
         </Link>
       }
+      <CMSLink label={'Bestil tilbud'} url={'/bestil-tilbud'} className={styles.navBtn} appearance="default"/>
     </nav>
   );
 };

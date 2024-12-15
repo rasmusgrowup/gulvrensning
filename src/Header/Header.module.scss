@@ -1,3 +1,5 @@
+@import "@/sizes";
+
 .header {
   position: absolute;
   top: 0;
@@ -19,4 +21,43 @@
   max-width: var(--maxWidth);
   padding: 3rem 5vw;
   width: 100%;
+}
+
+.menuToggle {
+  display: none;
+}
+
+// Smartphone styling
+@media (max-width: $md) {
+  .headerContainer {
+    padding: 5vw;
+  }
+  
+  .menuToggle {
+    align-self: center;
+    background-color: var(--primary-accent);
+    display: block;
+    border-radius: 1.5rem;
+    height: 3rem;
+    position: relative;
+    width: 3rem;
+
+    span {
+      background-color: var(--white);
+      display: block;
+      height: 2px;
+      left: 25%;
+      position: absolute;
+      top: 50%;
+      width: 1.5rem;
+
+      &:first-of-type {
+        transform: translateY(6px);
+      }
+
+      &:last-of-type {
+        transform: translateY(-6px);
+      }
+    }
+  }
 }

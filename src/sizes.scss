@@ -1,0 +1,19 @@
+// Mobile-first approach (min-width)
+
+// Extra Small Devices (Portrait Phones)
+$xs: 320px; // Minimum size for most smartphones
+
+// Small Devices (Landscape Phones / Small Tablets)
+$sm: 576px; // Bootstrap-like breakpoint for larger phones and smaller tablets
+
+// Medium Devices (Tablets)
+$md: 768px; // Standard for tablets and small desktop start range
+
+// Large Devices (Desktops)
+$lg: 1024px; // Laptops and smaller desktop screens
+
+// Extra Large Devices (Large Desktops / Monitors)
+$xl: 1200px; // Standard for larger screens and monitors
+
+// Extra Extra Large Devices (Ultra-Wide Screens)
+$xxl: 1440px; // For ultra-wide or very high-resolution displays

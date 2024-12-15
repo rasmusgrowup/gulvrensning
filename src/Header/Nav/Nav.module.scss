@@ -1,3 +1,5 @@
+@import "@/sizes";
+
 .nav {
   align-items: center;
   display: flex;
@@ -8,4 +10,34 @@
   color: var(--white);
   font-size: 1rem;
   font-weight: 500;
+}
+
+@media (max-width: $md) {
+  .nav {
+    background-color: var(--white);
+    box-shadow: 0 0 300px rgba(0, 0, 0, 1);
+    display: block;
+    left: 0;
+    padding:  150px 5vw 50px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+
+    .navItem {
+      display: block;
+      color: var(--primary-accent);
+      line-height: 2;
+      font-size: 1.25rem;
+    }
+  }
+
+  .hideMenu {
+    display: none;
+  }
+
+  .navBtn {
+    margin-top: 2rem;
+    width: 100%;
+  }
 }

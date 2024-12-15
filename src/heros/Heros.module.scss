@@ -1,3 +1,5 @@
+@import "@/sizes";
+
 .highImpactHero,
 .mediumImpactHero,
 .lowImpactHero {
@@ -36,13 +38,13 @@
   h1 {
     color: var(--white);
     font-weight: 800;
-    font-size: clamp(3rem, 6vw, 90px);
+    font-size: clamp(2.5rem, 6vw, 90px);
     line-height: 1;
   }
 
   p {
     color: var(--white);
-    font-size: clamp(2rem, 2vw, 45px);
+    font-size: clamp(1.25rem, 2vw, 45px);
     margin: 2rem auto;
   }
 }
@@ -62,4 +64,20 @@
   object-fit: cover;
   width: 100%;
   position: relative;
+}
+
+@media (max-width: $md) {
+
+  .highImpactHero,
+  .mediumImpactHero,
+  .lowImpactHero {
+    max-height: 80vh;
+    min-height: auto;
+  }
+
+  .contentInner {
+    left: 0;
+    padding: 5vw;
+    width: 100%;
+  }
 }

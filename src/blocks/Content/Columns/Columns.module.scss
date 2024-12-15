@@ -1,3 +1,5 @@
+@import "@/sizes";
+
 .columnHeading {
   font-weight: 700;
 }
@@ -53,6 +55,10 @@
     font-weight: 600;
     margin-bottom: 1rem;
   }
+
+  @media (max-width: $md) {
+    height: 90%;
+  }
 }
 
 // Image Column //
@@ -81,6 +87,14 @@
   .columnContent {
     width: 50%;
   }
+
+  @media (max-width: $md) {
+    display: block;
+
+    .columnContent {
+      width: 100%;
+    }
+  }
 }
 
 .columnLink {
@@ -106,10 +120,29 @@
     padding-left: 3rem;
     width: 35%;
   }
+
+  @media (max-width: $md) {
+    display: block;
+
+    .columnHeading {
+      font-size: 2rem;
+      width: 100%;
+    }
+
+    .columnContent {
+      padding-left: 0;
+      padding-top: 2rem;
+      width: 100%;
+    }
+  }
 }
 
 .oneSixth {
   grid-column: span 2; /* Spans 6 columns */
+
+  @media (max-width: $md) {
+    display: inline-block;
+  }
 }
 
 .oneQuarter {
@@ -126,4 +159,17 @@
 
 .twoThirdsColumn {
   grid-column: span 8; /* Spans 8 columns */
+}
+
+@media (max-width: $md) {
+  .oneQuarter,
+  .halfColumn,
+  .oneThirdColumn,
+  .twoThirdsColumn {
+    grid-column: span 12;
+  }
+
+  .oneSixth {
+    grid-column: span 6;
+  }
 }
