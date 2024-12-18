@@ -14,14 +14,15 @@ import styles from './Nav.module.scss'; // Import SCSS module
 interface HeaderNavProps {
   header: HeaderType; // Define the header prop type
   hideMenu: boolean;
+  hasHero: boolean | undefined;
 }
 
-export const HeaderNav: React.FC<HeaderNavProps> = ({ header, hideMenu }) => {
+export const HeaderNav: React.FC<HeaderNavProps> = ({ header, hideMenu, hasHero }) => {
   const navItems = header?.navItems || [];
   const enableSearch = header?.search || false;
 
   return (
-    <nav className={clsx(styles.nav, hideMenu ? styles.hideMenu : styles.showMenu )}>
+    <nav className={clsx(styles.nav, hideMenu ? styles.hideMenu : styles.showMenu, !hasHero && styles.withoutHero)}>
       {navItems.map(({ link }, i) => (
         <CMSLink key={i} {...link} className={styles.navItem} appearance="link" />
       ))}

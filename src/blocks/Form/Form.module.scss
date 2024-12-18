@@ -1,0 +1,31 @@
+@import "../../sizes";
+
+.formBlock {
+  margin: 5rem auto;
+  max-width: $lg;
+}
+
+.formIntroContent {
+  h1 {
+    font-weight: 600;
+  }
+}
+
+.formContainer {
+  margin: 3rem auto;
+}
+
+.form {
+  //
+}
+
+.formFields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.field {
+  //
+}

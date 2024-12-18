@@ -1,0 +1,22 @@
+@import "../../sizes";
+
+.container {
+  background-color: var(--primary-accent-light-background);
+  border-radius: 1.25rem;
+  padding: 5vw;
+}
+
+.richText {
+
+  h2, h3, h4, h5, h6, p {
+    margin-bottom: 1rem;
+  }
+}
+
+.inner {
+  text-align: center;
+}
+
+.links .button {
+  margin: 0 .25rem;
+}

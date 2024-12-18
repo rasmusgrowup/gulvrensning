@@ -265,6 +265,7 @@ export interface ContentBlock {
   columns?:
     | {
         blockType: 'text' | 'image' | 'video' | 'card';
+        changeLayout?: boolean | null;
         heading?: string | null;
         size?: ('oneSixth' | 'oneQuarter' | 'oneThird' | 'half' | 'twoThirds' | 'full') | null;
         richText?: {
@@ -831,6 +832,7 @@ export interface PagesSelect<T extends boolean = true> {
                 | T
                 | {
                     blockType?: T;
+                    changeLayout?: T;
                     heading?: T;
                     size?: T;
                     richText?: T;

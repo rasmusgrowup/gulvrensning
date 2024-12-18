@@ -12,6 +12,10 @@
   font-weight: 500;
 }
 
+.withoutHero .navItem {
+  color: var(--primary-accent);
+}
+
 @media (max-width: $md) {
   .nav {
     background-color: var(--white);

@@ -20,16 +20,17 @@ const blockComponents = {
 }
 
 export const RenderBlocks: React.FC<{
-  blocks: Page['layout'][0][]
+  blocks: Page['layout'][0][];
+  hasHero?: boolean;
 }> = (props) => {
-  const { blocks } = props
+  const { blocks, hasHero } = props
 
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
 
   if (hasBlocks) {
     return (
       <Fragment>
-        {blocks.map((block, index) => {
+        {blocks.map((block, index, hashHero) => {
           const { blockType } = block
 
           if (blockType && blockType in blockComponents) {
@@ -37,7 +38,7 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <section className={clsx(styles.blocksContainer, styles[blockType])} key={index}>
+                <section className={clsx(styles.blocksContainer, styles[blockType], (!hasHero && index == 0) && styles.withoutHero)} key={index}>
                   {/* @ts-expect-error */}
                   <Block {...block} />
                 </section>

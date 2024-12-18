@@ -46,7 +46,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           />
           <LivePreviewListener />
           <main className={styles.main}>
-            <Header/>
             {children}
             <Footer />
           </main>

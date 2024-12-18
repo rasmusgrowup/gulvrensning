@@ -26,6 +26,14 @@ const columnFields: Field[] = [
     },
   },
   {
+    name: 'changeLayout',
+    type: 'checkbox',
+    admin: {
+      condition: (_, siblingData) => siblingData.blockType === 'text', // Only show for text type
+      description: 'Change the layout to be centered, instead of columnized',
+    },
+  },
+  {
     name: 'heading',
     type: 'text', // Title field for the block
     label: 'Heading',
@@ -116,7 +124,7 @@ export const Content: Block = {
   fields: [
     {
       name: 'title',
-      type: 'text', // Title field for the block
+      type: 'text',
       label: 'Title',
       admin: {
         description: 'Add a title for this content block.',

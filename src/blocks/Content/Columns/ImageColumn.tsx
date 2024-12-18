@@ -42,7 +42,7 @@ export const ImageColumn: React.FC<ImageColumnProps> = (props) => {
       <div className={styles.contentContainer}>
         {heading && <h2 className={styles.columnHeading}>{heading}</h2>}
         <div className={styles.columnContent}>
-          {richText && <RichText content={richText} enableGutter={false} />}
+          {richText && <RichText className={styles.richText} content={richText} enableGutter={false} />}
           {enableLink && link && <div className="vsl"></div>}
           {enableLink && link &&
             <CMSLink

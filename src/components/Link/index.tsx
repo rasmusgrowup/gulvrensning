@@ -2,6 +2,7 @@ import { Button, type ButtonProps } from '@/components/ui/button'
 import { cn } from 'src/utilities/cn'
 import Link from 'next/link'
 import React from 'react'
+import styles from './Link.module.scss'
 
 import type { Page, Post } from '@/payload-types'
 

@@ -6,6 +6,7 @@ import styles from '@/blocks/Content/Columns/Columns.module.scss'
 import clsx from 'clsx';
 
 interface TextColumnProps {
+  changeLayout?: boolean;
   heading?: string;
   richText?: any;
   enableLink?: boolean;
@@ -14,7 +15,7 @@ interface TextColumnProps {
 }
 
 export const TextColumn: React.FC<TextColumnProps> = (props) => {
-  const { heading, richText, enableLink, link, size, } = props
+  const { changeLayout, heading, richText, enableLink, link, size, } = props
 
   const colsSpanClasses = {
     full: styles.fullColumn,
@@ -26,10 +27,10 @@ export const TextColumn: React.FC<TextColumnProps> = (props) => {
   }
 
   return (
-  <div className={clsx(colsSpanClasses[size!], styles.textColumn)}>
+  <div className={clsx(colsSpanClasses[size!], styles.textColumn, changeLayout && styles.changeLayout)}>
     {heading && <h2 className={styles.columnHeading}>{heading}</h2>}
     <div className={styles.columnContent}>
-      {richText && <RichText content={richText} enableGutter={false} />}
+      {richText && <RichText className={styles.richText} content={richText} enableGutter={false} />}
       <div className="vsl"></div>
       {enableLink && link && <CMSLink {...link} appearance={link.appearance || 'inline'} />}
     </div>

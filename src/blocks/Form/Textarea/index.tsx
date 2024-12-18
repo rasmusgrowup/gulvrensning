@@ -33,7 +33,8 @@ export const Textarea: React.FC<
       <Label htmlFor={name}>{label}</Label>
 
       <TextAreaComponent
-        defaultValue={defaultValue}
+        //defaultValue={defaultValue}
+        placeholder={defaultValue}
         id={name}
         rows={rows}
         {...register(name, { required: requiredFromProps })}
