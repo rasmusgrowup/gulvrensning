@@ -16,3 +16,12 @@
 .withoutHero {
   padding-top: 10rem;
 }
+
+.breacrumbs {
+  color: var(--primary-accent);
+
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: .33rem;
+  }
+}

@@ -14,6 +14,7 @@ import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { Header } from '@/Header/Component'
+import Link from 'next/link'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -63,7 +64,7 @@ export default async function Page({ params: paramsPromise }: Args) {
     return <PayloadRedirects url={url} />
   }
 
-  const { hero, layout } = page
+  const { hero, layout, breadcrumbs } = page
   const hasHero = hero.type !== "none";
 
   return (
@@ -75,7 +76,7 @@ export default async function Page({ params: paramsPromise }: Args) {
         <PayloadRedirects disableNotFound url={url} />
 
         <RenderHero {...hero} />
-        <RenderBlocks blocks={layout} hasHero={hasHero} />
+        <RenderBlocks blocks={layout} hasHero={hasHero} breadcrumbs={breadcrumbs} url={url}/>
       </article>
     </>
   )

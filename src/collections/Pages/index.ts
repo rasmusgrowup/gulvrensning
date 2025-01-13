@@ -65,6 +65,13 @@ export const Pages: CollectionConfig = {
       required: true,
     },
     {
+      name: 'breadcrumbs',
+      type: 'checkbox',
+      label: 'Include a breadcrumb trail?',
+      required: true,
+      defaultValue: false,
+    },
+    {
       type: 'tabs',
       tabs: [
         {
