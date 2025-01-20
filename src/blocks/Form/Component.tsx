@@ -1,5 +1,6 @@
 'use client'
 import type { Form as FormType } from '@payloadcms/plugin-form-builder/types'
+import payload from 'payload'; // Import the Payload SDK
 
 import { useRouter } from 'next/navigation'
 import React, { useCallback, useState } from 'react'
@@ -11,6 +12,7 @@ import styles from './Form.module.scss'
 import { buildInitialFormState } from './buildInitialFormState'
 import { fields } from './fields'
 import { getClientSideURL } from '@/utilities/getURL'
+import { clsx } from 'clsx'
 
 export type Value = unknown
 
@@ -52,6 +54,7 @@ export const FormBlock: React.FC<
     formState: { errors },
     handleSubmit,
     register,
+    watch,
   } = formMethods
 
   const [isLoading, setIsLoading] = useState(false)
@@ -60,71 +63,128 @@ export const FormBlock: React.FC<
   const router = useRouter()
 
   const onSubmit = useCallback(
-    (data: Data) => {
-      let loadingTimerID: ReturnType<typeof setTimeout>
-      const submitForm = async () => {
-        setError(undefined)
+    async (data: Data) => {
+      console.log('Form submission started:', data); // Log the initial form data
+      setError(undefined);
+      setIsLoading(true);
 
-        const dataToSend = Object.entries(data).map(([name, value]) => ({
-          field: name,
-          value,
-        }))
+      try {
+        const submissionData = await Promise.all(
+          Object.entries(data).map(async ([name, value]) => {
+            console.log(`Processing field: ${name}`, value); // Log each field being processed
 
-        // delay loading indicator by 1s
-        loadingTimerID = setTimeout(() => {
-          setIsLoading(true)
-        }, 1000)
+            // Check if the field is a file input
+            if (name === 'upload' && value instanceof FileList && value.length > 0) {
+              const file = value[0]; // Get the first file
+              console.log(`File detected in field ${name}:`, file);
 
-        try {
-          const req = await fetch(`${getClientSideURL()}/api/form-submissions`, {
-            body: JSON.stringify({
-              form: formID,
-              submissionData: dataToSend,
-            }),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            method: 'POST',
+              // Create the metadata for the file
+              const altValue = `Uploaded file: ${file.name}-${Date.now()}`;
+              const captionValue = {
+                root: {
+                  type: 'root',
+                  children: [
+                    {
+                      type: 'text',
+                      text: `Caption for ${file.name}`,
+                      version: 1,
+                    },
+                  ],
+                  direction: 'ltr',
+                  format: '',
+                  indent: 0,
+                  version: 1,
+                },
+              };
+
+              const formData = new FormData();
+              formData.append('file', file); // Append the file
+              formData.append("_payload", JSON.stringify({ alt: altValue }));
+              //formData.append("_payload", JSON.stringify({ caption: captionValue }));
+
+              console.log('FormData contents:');
+              formData.forEach((value, key) => {
+                console.log(`${key}:`, value);
+              });
+
+              console.log('Uploading file via REST API...');
+
+              // Upload the file directly to the Media collection using the REST API
+              const uploadResponse = await fetch('/api/media', {
+                method: 'POST',
+                body: formData,
+              });
+
+              if (!uploadResponse.ok) {
+                const errorText = await uploadResponse.text();
+                console.error(`File upload failed for field ${name}:`, errorText);
+                throw new Error(`File upload failed for field ${name}`);
+              }
+
+              const mediaData = await uploadResponse.json();
+              console.log(`File uploaded successfully for field ${name}:`, mediaData);
+
+              // Extract id and url from the response
+              const { id, url } = mediaData.doc;
+              const absoluteUrl = `${getClientSideURL()}${url}`;
+
+              // Return the field with uploaded file data
+              return {
+                field: name,
+                value: {
+                  id,
+                  url: absoluteUrl,
+                  //alt: altValue,
+                },
+              };
+            }
+
+            // Handle non-file fields
+            console.log(`Non-file field detected: ${name}`);
+            return {
+              field: name,
+              value,
+            };
           })
+        );
 
-          const res = await req.json()
+        console.log('Final submission data:', submissionData); // Log the processed submission data
 
-          clearTimeout(loadingTimerID)
+        // Submit the form data to Payload CMS
+        const req = await fetch(`${getClientSideURL()}/api/form-submissions`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            form: formID,
+            submissionData,
+          }),
+        });
 
-          if (req.status >= 400) {
-            setIsLoading(false)
-
-            setError({
-              message: res.errors?.[0]?.message || 'Internal Server Error',
-              status: res.status,
-            })
-
-            return
-          }
-
-          setIsLoading(false)
-          setHasSubmitted(true)
-
-          if (confirmationType === 'redirect' && redirect) {
-            const { url } = redirect
-
-            const redirectUrl = url
-
-            if (redirectUrl) router.push(redirectUrl)
-          }
-        } catch (err) {
-          console.warn(err)
-          setIsLoading(false)
-          setError({
-            message: 'Something went wrong.',
-          })
+        if (!req.ok) {
+          const errorText = await req.text();
+          console.error('Form submission failed:', errorText);
+          throw new Error('Form submission failed');
         }
-      }
 
-      void submitForm()
+        const res = await req.json();
+        console.log('Form submission successful:', res);
+
+        setIsLoading(false);
+        setHasSubmitted(true);
+
+        // Handle redirect or confirmation
+        if (confirmationType === 'redirect' && redirect?.url) {
+          console.log('Redirecting to:', redirect.url);
+          router.push(redirect.url);
+        }
+      } catch (err) {
+        console.error('Error during form submission:', err);
+        setIsLoading(false);
+        setError({ message: err.message || 'Something went wrong.' });
+      }
     },
-    [router, formID, redirect, confirmationType],
-  )
+    [formID, confirmationType, redirect, router]
+  );
 
   return (
     <div className={styles.formBlock}>

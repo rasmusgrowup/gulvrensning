@@ -15,6 +15,9 @@ import { Page, Post } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
+import UploadFieldBlock from '../blocks/Form/Upload/UploadFieldBlock'
+import PhoneBlock from '../blocks/Form/Phone'
+
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
   return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'
 }
@@ -62,6 +65,8 @@ export const plugins: Plugin[] = [
   formBuilderPlugin({
     fields: {
       payment: false,
+      upload: UploadFieldBlock,
+      phone: PhoneBlock,
     },
     formOverrides: {
       fields: ({ defaultFields }) => {

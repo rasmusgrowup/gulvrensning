@@ -14,6 +14,8 @@ import { Controller } from 'react-hook-form'
 
 import { Error } from '../Error'
 import { Width } from '../Width'
+import { clsx } from 'clsx'
+import styles from '@/blocks/Form/Form.module.scss'
 
 export const Select: React.FC<
   SelectField & {
@@ -25,6 +27,8 @@ export const Select: React.FC<
     >
   }
 > = ({ name, control, errors, label, options, required, width }) => {
+  const hasError = !!errors[name];
+
   return (
     <Width width={width}>
       <Label htmlFor={name}>{label}</Label>
@@ -37,7 +41,7 @@ export const Select: React.FC<
 
           return (
             <SelectComponent onValueChange={(val) => onChange(val)} value={controlledValue?.value}>
-              <SelectTrigger className="w-full" id={name}>
+              <SelectTrigger className={clsx({ [styles.error]: hasError }, 'w-full' )} id={name} >
                 <SelectValue placeholder={label} />
               </SelectTrigger>
               <SelectContent>

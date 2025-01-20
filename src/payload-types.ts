@@ -568,6 +568,14 @@ export interface Form {
             blockName?: string | null;
             blockType: 'textarea';
           }
+        | {
+            fieldLabel: string;
+            fieldDescription?: string | null;
+            width?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'uploadField';
+          }
       )[]
     | null;
   submitButtonLabel?: string | null;
@@ -1171,6 +1179,15 @@ export interface FormsSelect<T extends boolean = true> {
               width?: T;
               defaultValue?: T;
               required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        uploadField?:
+          | T
+          | {
+              fieldLabel?: T;
+              fieldDescription?: T;
+              width?: T;
               id?: T;
               blockName?: T;
             };

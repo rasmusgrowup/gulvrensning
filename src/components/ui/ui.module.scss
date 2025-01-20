@@ -10,6 +10,7 @@
   font-weight: 500;
   //transition: background-color 0.3s, color 0.3s;
   cursor: pointer;
+  width: fit-content;
 
   &:disabled {
     pointer-events: none;
@@ -96,3 +97,39 @@
   }
 }
 
+/* ----- FORM UI STYLING ----- */
+.label {
+  display: block;
+  margin-bottom: .5rem;
+}
+
+.input,
+.select,
+.selectContent,
+.textarea {
+  background-color: var(--light-background);
+  border: 1px solid var(--primary-line-color);
+  border-radius: .5rem;
+  padding: 0.5rem;
+  width: 100%;
+
+  &::placeholder {
+    color: var(--grey);
+  }
+}
+
+.select {
+  align-items: center;
+  //color: var(--primary-line-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+.selectContent {
+  z-index: 99;
+
+  option:hover {
+    display: block;
+    cursor: pointer;
+  }
+}

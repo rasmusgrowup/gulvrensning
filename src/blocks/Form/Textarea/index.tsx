@@ -7,6 +7,8 @@ import React from 'react'
 
 import { Error } from '../Error'
 import { Width } from '../Width'
+import { clsx } from 'clsx'
+import styles from '@/blocks/Form/Form.module.scss'
 
 export const Textarea: React.FC<
   TextField & {
@@ -28,6 +30,8 @@ export const Textarea: React.FC<
   rows = 3,
   width,
 }) => {
+  const hasError = !!errors[name];
+
   return (
     <Width width={width}>
       <Label htmlFor={name}>{label}</Label>
@@ -38,6 +42,7 @@ export const Textarea: React.FC<
         id={name}
         rows={rows}
         {...register(name, { required: requiredFromProps })}
+        className={clsx({ [styles.error]: hasError } )}
       />
 
       {requiredFromProps && errors[name] && <Error />}

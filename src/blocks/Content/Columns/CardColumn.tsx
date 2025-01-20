@@ -43,11 +43,13 @@ export const CardColumn: React.FC<ImageColumnProps> = (props) => {
             layout={'fill'}
           />}
       </div>
-      {heading && <h2 className={styles.columnHeading}>{heading}</h2>}
-      <div className={styles.columnContent}>
-        {richText && <RichText className={styles.richText} content={richText} enableGutter={false} />}
-        {/* <div className="vsl"></div> */}
-        {enableLink && link && <CMSLink {...link} appearance={link.appearance || 'inline'} />}
+      <div className={clsx(styles.cardColumnInner)}>
+        {heading && <h2 className={styles.columnHeading}>{heading}</h2>}
+        <div className={styles.columnContent}>
+          {richText && <RichText className={styles.richText} content={richText} enableGutter={false} />}
+          {/* <div className="vsl"></div> */}
+          {enableLink && link && <CMSLink {...link} appearance={link.appearance || 'default'} />}
+        </div>
       </div>
     </div>
   )

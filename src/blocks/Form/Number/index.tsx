@@ -7,6 +7,8 @@ import React from 'react'
 
 import { Error } from '../Error'
 import { Width } from '../Width'
+import { clsx } from 'clsx'
+import styles from '@/blocks/Form/Form.module.scss'
 export const Number: React.FC<
   TextField & {
     errors: Partial<
@@ -17,6 +19,8 @@ export const Number: React.FC<
     register: UseFormRegister<FieldValues>
   }
 > = ({ name, defaultValue, errors, label, register, required: requiredFromProps, width }) => {
+  const hasError = !!errors[name];
+
   return (
     <Width width={width}>
       <Label htmlFor={name}>{label}</Label>
@@ -25,6 +29,7 @@ export const Number: React.FC<
         id={name}
         type="number"
         {...register(name, { required: requiredFromProps })}
+        className={clsx({ [styles.error]: hasError } )}
       />
       {requiredFromProps && errors[name] && <Error />}
     </Width>
