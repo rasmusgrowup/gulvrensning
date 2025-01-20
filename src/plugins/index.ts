@@ -19,7 +19,7 @@ import UploadFieldBlock from '../blocks/Form/Upload/UploadFieldBlock'
 import PhoneBlock from '../blocks/Form/Phone'
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
-  return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'
+  return doc?.title ? `${doc.title}` : 'Payload Website Template'
 }
 
 if (!process.env.BLOB_READ_WRITE_TOKEN) {
