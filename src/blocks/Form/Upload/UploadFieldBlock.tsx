@@ -16,7 +16,7 @@ const UploadFieldBlock = {
       },
     },
     {
-      name: 'fieldLabel', // Label for the upload field
+      name: 'label', // Label for the upload field
       type: 'text',
       label: 'Label',
       required: true,

@@ -118,6 +118,10 @@
   }
 }
 
+.input[type="file"] {
+  background-color: var(--primary-accent-light-background);
+}
+
 .select {
   align-items: center;
   //color: var(--primary-line-color);
