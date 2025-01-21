@@ -32,19 +32,34 @@
   color: var(--white);
   position: absolute;
   width: 40vw;
+
+  .links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .outlineButton {
+    color: var(--white);
+    border-color: var(--white);
+
+    &:hover {
+      border-color: var(--primary-accent);
+    }
+  }
 }
 
 .richText {
   h1 {
     color: var(--white);
-    font-weight: 800;
+    font-weight: 900;
     font-size: clamp(2.5rem, 6vw, 90px);
     line-height: 1;
   }
 
   p {
     color: var(--white);
-    font-size: clamp(1.25rem, 2vw, 45px);
+    font-size: clamp(1.25rem, 1.5vw, 45px);
+    line-height: 1.5;
     margin: 2rem auto;
   }
 }

@@ -29,18 +29,24 @@
 
 .imageContainer {
   background-color: var(--grey);
+  border-radius: 1rem;
+  overflow: hidden;
   padding-top: 134%;
   position: relative;
   width: 100%;
 
   &:after {
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0, 86, 255, 0.2);
     //content: ''; // enable to add a slightly dark overlay to the image
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
+  }
+
+  img {
+    //filter: blur(75px);
   }
 }
 

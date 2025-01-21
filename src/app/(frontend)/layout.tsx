@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import type { Viewport } from 'next'
-import { Raleway } from 'next/font/google'
+import { Open_Sans, DM_Sans, Poppins, Mulish, Manrope, Schibsted_Grotesk, Jost, Inter, Rubik, Merriweather } from 'next/font/google'
 
 import { cn } from 'src/utilities/cn'
 import React from 'react'
@@ -18,9 +18,56 @@ import './globals.css'
 import styles from './Layout.module.scss'
 import { getServerSideURL } from '@/utilities/getURL'
 
-const raleway = Raleway({
+const opensans = Open_Sans({
   subsets: ['latin'],
   display: 'swap'
+})
+
+const dmsans = DM_Sans({
+  subsets: ['latin'],
+  display: 'swap'
+})
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
+})
+
+const mulish = Mulish({
+  subsets: ['latin'],
+  display: 'swap',
+})
+
+const manrope = Manrope({
+  subsets: ['latin'],
+  display: 'swap'
+})
+
+const schibsted = Schibsted_Grotesk({
+  subsets: ['latin'],
+  display: 'swap'
+})
+
+const jost = Jost({
+  subsets: ['latin'],
+  display: 'swap'
+})
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap'
+})
+
+const rubik = Rubik({
+  subsets: ['latin'],
+  display: 'swap'
+})
+
+const merriweather = Merriweather({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['300', '400', '700', '900'],
 })
 
 export const viewport: Viewport = {
@@ -31,7 +78,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const { isEnabled } = await draftMode()
 
   return (
-    <html className={raleway.className} lang="en" suppressHydrationWarning>
+    <html className={dmsans.className} lang="en" suppressHydrationWarning>
       <head>
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />

@@ -9,9 +9,10 @@ import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 
 import styles from '../Heros.module.scss'
+import { clsx } from 'clsx'
 
 export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText }) => {
-  console.log(media)
+  console.log(links)
   return (
     <section className={styles.highImpactHero}>
       <div className={styles.content}>
@@ -22,7 +23,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
               {links.map(({ link }, i) => {
                 return (
                   <li key={i} className={styles.link}>
-                    <CMSLink {...link} appearance={link.appearance || 'inline'} />
+                    <CMSLink {...link} appearance={link.appearance || 'inline'} className={clsx(link.appearance === 'outline' && styles.outlineButton)} />
                   </li>
                 )
               })}
