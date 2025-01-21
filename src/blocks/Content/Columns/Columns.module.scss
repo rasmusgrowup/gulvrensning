@@ -31,10 +31,13 @@
   //background-color: var(--grey);
   //border-radius: 1rem;
   overflow: hidden;
-  min-height: 540px;
   padding-top: 134%;
   position: relative;
   width: 100%;
+
+  @media (max-width: $md) {
+    padding-top: 150%;
+  }
 
   img {
     //filter: blur(75px);
