@@ -196,7 +196,6 @@ export const FormBlock: React.FC<
           {!isLoading && hasSubmitted && confirmationType === 'message' && (
             <RichText content={confirmationMessage} />
           )}
-          {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
           {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
           {!hasSubmitted && (
             <form className={styles.form} id={formID} onSubmit={handleSubmit(onSubmit)}>
@@ -223,7 +222,7 @@ export const FormBlock: React.FC<
               </div>
 
               <Button form={formID} type="submit" variant="default">
-                {submitButtonLabel}
+                {isLoading && !hasSubmitted ? 'Behandler ...' : submitButtonLabel}
               </Button>
             </form>
           )}
