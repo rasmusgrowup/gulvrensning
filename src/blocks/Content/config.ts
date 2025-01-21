@@ -108,6 +108,14 @@ const columnFields: Field[] = [
     },
   },
   {
+    name: 'overlay',
+    type: 'checkbox',
+    label: 'Include an overlay for the image, to make the text easier to read',
+    admin: {
+      condition: (_, siblingData) => siblingData.blockType === 'card', // Only show for image type
+    },
+  },
+  {
     name: 'videoUrl',
     type: 'text',
     label: 'Video URL',

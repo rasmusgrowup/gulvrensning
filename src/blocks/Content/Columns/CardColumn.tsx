@@ -13,15 +13,18 @@ interface ImageColumnProps {
   link?: any;
   size?: string | null;
   image?: { url: string; alt: string };
+  overlay?: boolean | false;
 }
 
 export const CardColumn: React.FC<ImageColumnProps> = (props) => {
-  const { heading,
+  const {
+    heading,
     richText,
     enableLink,
     link,
     size ,
-    image
+    image,
+    overlay
   } = props
 
   const colsSpanClasses = {
@@ -35,7 +38,7 @@ export const CardColumn: React.FC<ImageColumnProps> = (props) => {
 
   return (
     <div className={clsx(colsSpanClasses[size!], styles.cardColumn)}>
-      <div className={styles.imageContainer}>
+      <div className={clsx(styles.imageContainer, overlay && styles.imageOverlay)}>
         {image &&
           <Image
             src={image.url}

@@ -12,6 +12,7 @@ interface ContentBlockProps {
     heading?: string;
     richText?: any;
     image?: { url: string; alt: string };
+    overlay?: boolean | false;
     videoUrl?: string;
     customComponent?: string;
   }>;

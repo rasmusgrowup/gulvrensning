@@ -28,26 +28,26 @@
 }
 
 .imageContainer {
-  background-color: var(--grey);
-  border-radius: 1rem;
+  //background-color: var(--grey);
+  //border-radius: 1rem;
   overflow: hidden;
   padding-top: 134%;
   position: relative;
   width: 100%;
 
-  &:after {
-    background-color: rgba(0, 86, 255, 0.2);
-    //content: ''; // enable to add a slightly dark overlay to the image
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-  }
-
   img {
     //filter: blur(75px);
   }
+}
+
+.imageContainer.imageOverlay:after {
+  background-color: rgba(0, 5, 16, 0.4);
+  content: ''; // enable to add a slightly dark overlay to the image
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 .cardColumnInner {
@@ -64,6 +64,7 @@
   font-size: 1rem;
   font-weight: 500;
   padding-bottom: 1rem;
+  width: fit-content;
   //position: absolute;
   //top: 2.5rem;
   //left: 2.5rem;
