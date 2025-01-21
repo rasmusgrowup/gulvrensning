@@ -28,6 +28,10 @@
 
 .field {
   //
+
+  @media (max-width: $lg) {
+    width: 100% !important;
+  }
 }
 
 .error {
