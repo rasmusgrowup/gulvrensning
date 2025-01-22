@@ -80,23 +80,6 @@ export const FormBlock: React.FC<
 
               // Create the metadata for the file
               const altValue = `Uploaded file: ${file.name}-${Date.now()}`;
-              const captionValue = {
-                root: {
-                  type: 'root',
-                  children: [
-                    {
-                      type: 'text',
-                      text: `Caption for ${file.name}`,
-                      version: 1,
-                    },
-                  ],
-                  direction: 'ltr',
-                  format: '',
-                  indent: 0,
-                  version: 1,
-                },
-              };
-
               const formData = new FormData();
               formData.append('file', file); // Append the file
               formData.append("_payload", JSON.stringify({ alt: altValue }));
@@ -124,18 +107,14 @@ export const FormBlock: React.FC<
               const mediaData = await uploadResponse.json();
               console.log(`File uploaded successfully for field ${name}:`, mediaData);
 
-              // Extract id and url from the response
-              const { id, url } = mediaData.doc;
+              // Extract url from the response
+              const { url } = mediaData.doc;
               const absoluteUrl = `${getClientSideURL()}${url}`;
 
               // Return the field with uploaded file data
               return {
                 field: name,
-                value: {
-                  id,
-                  url: absoluteUrl,
-                  //alt: altValue,
-                },
+                value: absoluteUrl
               };
             }
 

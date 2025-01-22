@@ -76,7 +76,10 @@ export const UploadField: React.FC<UploadFieldProps> = ({
           aria-invalid={errors[name] ? 'true' : 'false'}
           {...register(name, { required: required })}
           className={clsx({ [styles.error]: hasError })}
-          ref={fileInputRef} // Attach the ref to the input
+          ref={(e) => {
+            fileInputRef.current = e; // Assign to custom ref
+            register(name).ref(e); // Assign to react-hook-form's register
+          }}
         />
         <p className={clsx(styles.fauxSelectorText)}>{preview ? preview : 'Ingen fil valgt'}</p>
       </div>
