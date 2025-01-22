@@ -37,3 +37,36 @@
 .error {
   border-color: red !important;
 }
+
+.uploadInputContainer {
+  background-color: var(--light-background);
+  border: 1px dashed var(--primary-line-color);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.fauxSelectorButton {
+  background-color: var(--primary-accent);
+  border: 1px solid var(--primary-accent);
+  border-radius: 2rem;
+  color: var(--white);
+  margin: 1rem auto;
+  padding: .75rem 1.5rem;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--primary-accent-hover);
+    border-color: var(--primary-accent-hover);
+  }
+}
+
+.fauxSelectorText {
+  color: var(--grey);
+}

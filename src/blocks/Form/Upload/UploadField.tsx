@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import type { FieldErrorsImpl, FieldValues, UseFormRegister } from 'react-hook-form'
 import { Label } from '@/components/ui/label'
 import { Error } from '../Error'
@@ -34,40 +34,52 @@ export const UploadField: React.FC<UploadFieldProps> = ({
                                                         }) => {
 
   const hasError = !!errors[name]
-  //const [preview, setPreview] = useState<string | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+  const [imageName, setImageName] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  /*
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]; // Get the selected file
-    if (file) {
-      setPreview(URL.createObjectURL(file)); // Generate a preview URL
-    } else {
-      setPreview(null); // Clear the preview if no file is selected
-    }
-  };
-   */
+  // Watch for file selection changes using useEffect
+  useEffect(() => {
+    const fileInput = fileInputRef.current;
+
+    if (!fileInput) return;
+
+    const handleFileChange = () => {
+      const file = fileInput.files?.[0];
+      if (file) {
+        setPreview(file.name); // Generate a preview URL
+      } else {
+        setPreview(null); // Clear the preview if no file is selected
+      }
+    };
+
+    // Listen for changes on the file input
+    fileInput.addEventListener('change', handleFileChange);
+
+    // Cleanup the event listener on unmount
+    return () => {
+      fileInput.removeEventListener('change', handleFileChange);
+    };
+  }, []); // Empty dependency array ensures this effect runs once
+
 
   return (
     <Width width={width}>
       <Label htmlFor={name}>{label}</Label>
-      <Input
-        type="file"
-        id={name}
-        aria-invalid={errors[name] ? 'true' : 'false'}
-        {...register(name, { required: required })}
-        className={clsx({ [styles.error]: hasError })}
-      />
-      {/*
-        {preview && (
-          <div className={styles.previewContainer}>
-            <img
-              src={preview}
-              alt="Preview of the uploaded file"
-              className={styles.imagePreview}
-            />
-          </div>
-        )}
-      */}
+      <div className={clsx(styles.uploadInputContainer)}>
+        <p>Træk og slip fil her, eller </p>
+        <div className={clsx(styles.fauxSelectorButton)}>{!preview ? 'Vælg fil' : 'Vælg en anden fil'}</div>
+        <Input
+          type="file"
+          id={name}
+          accept={'image/*'}
+          aria-invalid={errors[name] ? 'true' : 'false'}
+          {...register(name, { required: required })}
+          className={clsx({ [styles.error]: hasError })}
+          ref={fileInputRef} // Attach the ref to the input
+        />
+        <p className={clsx(styles.fauxSelectorText)}>{preview ? preview : 'Ingen fil valgt'}</p>
+      </div>
       {fieldDescription &&
         <p
           className="description"
